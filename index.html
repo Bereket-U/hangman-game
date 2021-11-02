@@ -4,7 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Rampart+One&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="js/main.js"></script>
     <title>Hangman</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Hangman</h1>
+        <h2 id="display-result">Guess To Win!</h2>
+      </div>
+
+      <div class="hungman-img">
+        <img src="img/hangman.png" />
+      </div>
+      <div class="answer">
+        ____ _____ _____ _____ _____ _____ _____
+        <button>Hint</button>
+      </div>
+
+      <div class="keyboard"></div>
+
+      <p>Select Difficulty:</p>
+      <div>
+        <input type="radio" id="hard" name="level" value="hard" checked />
+        <label for="hard">Hard</label>
+
+        <input type="radio" id="normal" name="level" value="normal" />
+        <label for="normal">Normal</label>
+
+        <input type="radio" id="easy" name="level" value="easy" />
+        <label for="easy">Easy</label>
+      </div>
+
+      <div>
+        <button>Replay</button>
+      </div>
+    </div>
+  </body>
 </html>
