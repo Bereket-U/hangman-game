@@ -14,35 +14,39 @@
   </head>
   <body>
     <div class="container">
-      <div>
+      <div class="header">
         <h1>Hangman</h1>
-        <h2 id="display-result">Guess To Win!</h2>
+        <h3 id="display-result">Guess To Win!</h3>
+        <p id="display-hint"></p>
       </div>
 
       <div class="hungman-img">
         <img src="img/hangman.png" />
       </div>
-      <div class="answer">
-        ____ _____ _____ _____ _____ _____ _____
-        <button>Hint</button>
+      <div class="display-guess">
+        <h1 id="guessed">_ _ _ _</h1>
+      </div>
+
+      <div>
+        <button id="hint" class="button-green">Hint ?</button>
       </div>
 
       <div class="keyboard"></div>
 
       <p>Select Difficulty:</p>
       <div>
-        <input type="radio" id="hard" name="level" value="hard" checked />
-        <label for="hard">Hard</label>
-
-        <input type="radio" id="normal" name="level" value="normal" />
-        <label for="normal">Normal</label>
-
         <input type="radio" id="easy" name="level" value="easy" />
         <label for="easy">Easy</label>
+
+        <input type="radio" id="normal" name="level" value="normal" checked />
+        <label for="normal">Normal</label>
+
+        <input type="radio" id="hard" name="level" value="hard" />
+        <label for="hard">Hard</label>
       </div>
 
       <div>
-        <button>Replay</button>
+        <button class="button-green">Replay</button>
       </div>
     </div>
   </body>
