@@ -33,7 +33,7 @@ const words = ["cat", "dog", "animal", "car", "apple"];
 // store randomly selected secret word
 let word = "";
 // store guessed letters
-let guessed = [];
+let guessed;
 // maximum number of allowed guesses (secret word length)
 let maxGuess = 0;
 
@@ -42,9 +42,13 @@ let maxGuess = 0;
 const message = document.getElementById("display-result");
 const hint = document.getElementById("display-hint"); // display hint for player
 const hintBtn = document.getElementById("hint"); //
-hintBtn.addEventListener("click", displayHint); // shows hint to player when clicked
+
 const keyboard = document.querySelector(".keyboard");
 const guessedChar = document.getElementById("guessed"); // to display correct guesses
+const resetBtn = document.getElementById("reset");
+
+hintBtn.addEventListener("click", displayHint); // shows hint to player
+resetBtn.addEventListener("click", initialize); // resets the game
 
 function generateKeyboard() {
   // creates button for each letters (keyboard)
@@ -67,13 +71,14 @@ function generateKeyboard() {
         } else {
           letter.classList.add("key-disable"); // disable onclick
         }
+        console.log(guessed);
+        console.log(word);
+        console.log(maxGuess);
+        console.log(word.length);
       }
 
       guessedChar.textContent = guessed.join("  "); //  converst guessesd array to string and display correct guesses
       checkWin(); // check if the player wins
-      console.log(guessed);
-      console.log(word);
-      console.log(maxGuess);
     });
   });
 }
@@ -97,16 +102,27 @@ function checkWin() {
 }
 
 initialize();
+generateKeyboard(); // generate keyboard and handle move function
 //initialize the game
 function initialize() {
+  guessed = [];
   generateWord(); // select random word
-  generateKeyboard(); // generate keyboard and handle move function
+
   for (let i = 0; i < word.length; i++) {
     // Set default value for guesses array to _  _ _ _ X length of secret word
     guessed[i] = "_";
   }
   guessedChar.innerHTML = guessed.join(" "); // Display default guessed Array to player
   wordLeangth = word.length + 1;
+  message.textContent = "Guess To Win";
+  hint.textContent = "";
+  hintBtn.classList.remove("key-disable");
+  keyboard.classList.remove("key-disable");
+  keyboard.childNodes.forEach(function (letter) {
+    // loop over all keyboad elements
+    letter.classList.remove("button-green");
+    letter.classList.remove("key-disable");
+  });
 }
 
 function generateWord() {
