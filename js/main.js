@@ -55,6 +55,7 @@ function generateKeyboard() {
   letters.forEach(function (letter, idx) {
     const keyboard = document.querySelector(".keyboard");
     letter = document.createElement("button");
+    letter.classList.add("button");
     letter.textContent = letters[idx];
     keyboard.appendChild(letter);
 
