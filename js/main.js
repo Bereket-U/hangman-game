@@ -92,9 +92,9 @@ function checkWin() {
     hintBtn.classList.add("key-disable");
     hint.textContent = "Click Replay";
   }
-  if (maxGuess <= 0) {
+  if (maxGuess <= 0 && word !== guessed.join("")) {
     // if player is out of guesses show looser message and disable entire keyboard
-    message.textContent = "Game Over! ";
+    message.textContent = "Game Over! It's on you!";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
     hint.textContent = "Click Replay";
@@ -136,4 +136,6 @@ function displayHint() {
   // display hint when hint clicked
   hint.textContent = `Starts with ${word[0]}`;
   guessed[0] = word[0];
+  message.textContent = `${maxGuess} guesses left`;
+  guessedChar.textContent = guessed.join("  ");
 }
