@@ -27,11 +27,21 @@ const letters = [
   "y",
   "z",
 ];
-// array of words
-const words = ["cat", "dog", "animal", "car", "apple"];
+// array of objects -> objects contain words with categories
+const allWords = [
+  (continents = {
+    category: "Continant",
+    words: ["asia", "africa", "antarctica", "europe", "australia", "new"],
+  }),
+  (car = {
+    category: "Car Brand",
+    words: ["bmw", "ford", "aaaaaaaaaa"],
+  }),
+];
 
 // store randomly selected secret word
 let word = "";
+let wordCategory;
 // store guessed letters
 let guessed;
 // maximum number of allowed guesses (secret word length)
@@ -127,8 +137,18 @@ function initialize() {
 }
 
 function generateWord() {
-  // choose random world from array
-  word = words[Math.floor(Math.random() * words.length)];
+  const categoryIndex = allWords.indexOf(
+    allWords[Math.floor(Math.random() * allWords.length)]
+  );
+  // value of category inside the object
+  wordCategory = allWords[categoryIndex].category;
+
+  // words array inside the object
+  const wordsArray = allWords[categoryIndex].words;
+
+  // select random word from words array
+  word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+
   maxGuess = word.length; // set maximum guesses to word length
   console.log(maxGuess);
 }
