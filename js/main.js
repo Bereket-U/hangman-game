@@ -196,7 +196,7 @@ function displayHint() {
     guessed[0] = word[0];
     guessedChar.textContent = guessed.join("  ");
   } else if (difficulty === 2) {
-    //   removes hint button for 2 (hard level)
+    message.textContent = "Sorry! No hint this time";
   } else {
   }
 }
