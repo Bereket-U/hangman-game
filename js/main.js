@@ -35,7 +35,7 @@ const allWords = [
   }),
   (car = {
     category: "Car Brand",
-    words: ["bmw", "ford", "aaaaaaaaaa"],
+    words: ["bmw", "ford", "tesla", "Lamborghini", "volkswagen"],
   }),
 ];
 
@@ -55,7 +55,7 @@ let difficultyLevels = ["Easy", "Normal", "Hard"];
 // generates keyboard layout
 
 const message = document.getElementById("display-result");
-const hint = document.getElementById("display-hint"); // display hint for player
+const categoryHint = document.getElementById("display-category"); // display hint for player
 const hintBtn = document.getElementById("hint");
 
 const keyboard = document.querySelector(".keyboard");
@@ -70,11 +70,11 @@ const difficultyOption = document.querySelector(".difficulty");
 initialize();
 generateKeyboard();
 difficultyLevel();
+
 //initialize the game
 function initialize() {
-  guessed = [];
-
   generateWord(); // select random word
+  guessed = [];
 
   for (let i = 0; i < word.length; i++) {
     // Set default value for guesses array to _  _ _ _ X length of secret word
@@ -83,7 +83,7 @@ function initialize() {
   guessedChar.innerHTML = guessed.join(" "); // Display default guessed Array to player
   wordLeangth = word.length + 1;
   message.textContent = "Guess To Win";
-  hint.textContent = "";
+  categoryHint.textContent = `It's a ${wordCategory}`;
   hintBtn.classList.remove("key-disable");
   keyboard.classList.remove("key-disable");
   keyboard.childNodes.forEach(function (letter) {
@@ -134,29 +134,26 @@ function checkWin() {
     message.textContent = "Congrats! You are a life saver";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
-    hint.textContent = "Click Replay";
+    // hint.textContent = "Click Replay";
   }
   if (maxGuess <= 0 && word !== guessed.join("")) {
     // if player is out of guesses show looser message and disable entire keyboard
     message.textContent = "Game Over! It's on you!";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
-    hint.textContent = "Click Replay";
+    // hint.textContent = "Click Replay";
   }
 }
 
+// generates random word
 function generateWord() {
   const categoryIndex = allWords.indexOf(
     allWords[Math.floor(Math.random() * allWords.length)]
   );
-  // value of category inside the object
-  wordCategory = allWords[categoryIndex].category;
 
-  // words array inside the object
-  const wordsArray = allWords[categoryIndex].words;
-
-  // leveld words based on thier length
-  let leveledWords = [];
+  wordCategory = allWords[categoryIndex].category; // value of category inside the object
+  const wordsArray = allWords[categoryIndex].words; // words array inside the object
+  let leveledWords = []; // leveld words based on thier length
   if (difficulty === 2) {
     wordsArray.forEach(function (wordCheck) {
       if (wordCheck.length >= 7) {
@@ -181,18 +178,27 @@ function generateWord() {
   }
   word = leveledWords[Math.floor(Math.random() * leveledWords.length)];
 
-  //   word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-
   maxGuess = word.length; // set maximum guesses to word length
   console.log(maxGuess);
 }
 
 function displayHint() {
-  // display hint when hint clicked
-  hint.textContent = `It's a ${wordCategory}`;
-  guessed[0] = word[0];
+  // display hint first and last characters based on difficulty level
+
   message.textContent = `${maxGuess} guesses left`;
-  guessedChar.textContent = guessed.join("  ");
+  if (difficulty === 0) {
+    maxGuess--;
+    message.textContent = `${maxGuess} guesses left`;
+    guessed[0] = word[0];
+    guessed[guessed.length - 1] = word[word.length - 1];
+    guessedChar.textContent = guessed.join("  ");
+  } else if (difficulty === 1) {
+    guessed[0] = word[0];
+    guessedChar.textContent = guessed.join("  ");
+  } else if (difficulty === 2) {
+    //   removes hint button for 2 (hard level)
+  } else {
+  }
 }
 
 function difficultyLevel() {
