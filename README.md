@@ -13,7 +13,7 @@ Hangman is a popular word guessing game where the player attempts to build a mis
 
 ---
 
-## Added Features 
+## Added Features
 
 ### Difficulty Level
 
@@ -39,9 +39,9 @@ In addition to category, Hint is available for easy and normal difficulty levels
 
 If it's too hard to guess, you can always see the secret word. Just to save the man!
 
-### Win and Loss 
+### Win and Loss
 
-If the player correctly identifies all the letters it's a win otherwise is a lose
+If the player correctly identifies all the letters it's a win otherwise is a lose.
 
 ### Button/Keyboard styling
 
@@ -49,7 +49,7 @@ If the player clicks on the correct letter, the key will change to green, otherw
 
 ### Disabled Key
 
-keyboard keys are clicked only once 
+keyboard keys are clicked only once
 
 ---
 
@@ -77,19 +77,17 @@ keyboard keys are clicked only once
 
 ![](img/cheat.png)
 
-### Phone Screen (Iphone x) 
+### Phone Screen (Iphone x)
 
 ![](img/iphone.png)
 
-
-
 ## **Getting Started**
 
-Here is a [Link](https://) to start playing! Enjoy!
+Here is a [Link](https://bereket-u.github.io/hangman-game/) to start playing! Enjoy!
 
 ---
 
 ## **Next Steps**
 
-- MultiPlayer 
-- Animation 
+- MultiPlayer
+- Animation
