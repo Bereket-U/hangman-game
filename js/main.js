@@ -64,7 +64,6 @@ let guessed;
 let maxGuess = 0;
 
 let difficulty = 1;
-console.log(difficulty);
 
 let difficultyLevels = ["Easy", "Normal", "Hard"];
 
@@ -100,7 +99,7 @@ function initialize() {
     // Set default value for guesses array to _  _ _ _ X length of secret word
     guessed[i] = "_";
   }
-  hangmanPic.setAttribute("src", "img/1.png");
+  hangmanPic.setAttribute("src", "img/6.png");
   guessedChar.innerHTML = guessed.join(" "); // Display default guessed Array to player
   wordLeangth = word.length + 1;
   message.textContent = "Guess To Win";
@@ -137,6 +136,8 @@ function generateKeyboard() {
         message.textContent = `${maxGuess} guesses left`;
       }
 
+      renderHangman();
+
       // loop over the word and replace the correct guesses
       for (let i = 0; i < word.length; i++) {
         if (word[i].toLowerCase() === letter.textContent.toLowerCase()) {
@@ -144,10 +145,10 @@ function generateKeyboard() {
           guessed[i] = letter.textContent;
         }
       }
-      console.log(guessed);
-      console.log(word);
-      console.log(maxGuess);
-      console.log(word.length);
+      //   console.log(guessed);
+      //   console.log(word);
+      //   console.log(maxGuess);
+      //   console.log(word.length);
 
       guessedChar.textContent = guessed.join("  "); //  converst guessesd array to string and display correct guesses
       checkWin(); // check if the player wins
@@ -162,6 +163,7 @@ function generateKeyboard() {
 
   showAnswer.addEventListener("click", function (cool) {
     message.innerHTML = `Try not to cheat next time ${dontCheat}`;
+    hangmanPic.setAttribute("src", "img/6.png");
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
     showAnswer.classList.add("key-disable");
@@ -178,13 +180,14 @@ function generateKeyboard() {
 
 // check if the player guessed all correct
 function checkWin() {
-  if (word === guessed.join("")) {
+  if (word.toLowerCase() === guessed.join("").toLowerCase()) {
     //if true display win message and disable entire keyboard
     message.textContent = "Congrats! You are a life saver";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
+    hangmanPic.setAttribute("src", "img/6.png");
   }
-  if (maxGuess <= 0 && word !== guessed.join("")) {
+  if (maxGuess <= 0 && word.toLowerCase() !== guessed.join("").toLowerCase()) {
     // if player is out of guesses show looser message and disable entire keyboard
     message.textContent = "Game Over! It's on you!";
     keyboard.classList.add("key-disable");
@@ -234,7 +237,6 @@ function generateWord() {
   word = leveledWords[Math.floor(Math.random() * leveledWords.length)];
 
   maxGuess = word.length; // set maximum guesses to word length
-  console.log(maxGuess);
 }
 
 function displayHint() {
@@ -279,4 +281,31 @@ function difficultyLevel() {
       console.log(difficulty);
     });
   });
+}
+function renderHangman() {
+  if (Math.round(word.length * 0.8) < maxGuess && maxGuess <= word.length) {
+    hangmanPic.setAttribute("src", "img/6.png");
+  } else if (
+    Math.round(word.length * 0.6) < maxGuess &&
+    maxGuess <= Math.round(word.length * 0.8)
+  ) {
+    hangmanPic.setAttribute("src", "img/1.png");
+  } else if (
+    Math.round(word.length * 0.4) < maxGuess &&
+    maxGuess <= Math.round(word.length * 0.6)
+  ) {
+    hangmanPic.setAttribute("src", "img/2.png");
+  } else if (
+    Math.round(word.length * 0.2) < maxGuess &&
+    maxGuess <= Math.round(word.length * 0.4)
+  ) {
+    hangmanPic.setAttribute("src", "img/3.png");
+  } else if (
+    Math.round(word.length * 0.01) < maxGuess &&
+    maxGuess <= Math.round(word.length * 0.2)
+  ) {
+    hangmanPic.setAttribute("src", "img/4.png");
+  } else if (maxGuess === 0) {
+    hangmanPic.setAttribute("src", "img/5.png");
+  }
 }
