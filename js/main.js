@@ -1,4 +1,5 @@
-// array of letters (A-Z) - keyboard
+/*----- constants -----*/
+
 const letters = [
   "a",
   "b",
@@ -27,7 +28,7 @@ const letters = [
   "y",
   "z",
 ];
-// array of objects -> objects contain words with categories
+
 const allWords = [
   (continents = {
     category: "Continent",
@@ -55,19 +56,16 @@ const allWords = [
   }),
 ];
 
-// store randomly selected secret word
+/*----- app's state (variables) -----*/
+
 let word = "";
 let wordCategory;
-// store guessed letters
 let guessed;
-// maximum number of allowed guesses (secret word length)
 let maxGuess = 0;
-
 let difficulty = 1;
-
 let difficultyLevels = ["Easy", "Normal", "Hard"];
 
-// generates keyboard layout
+/*----- cached element references -----*/
 
 const message = document.getElementById("display-result");
 const categoryHint = document.getElementById("display-category"); // display hint for player
@@ -81,6 +79,8 @@ const hangmanPic = document.createElement("img");
 hangmanPic.setAttribute("src", "img/1.png");
 hangman.appendChild(hangmanPic);
 
+/*----- event listeners -----*/
+
 hintBtn.addEventListener("click", displayHint); // shows hint to player
 resetBtn.addEventListener("click", initialize); // resets the game
 
@@ -90,13 +90,13 @@ initialize();
 generateKeyboard();
 difficultyLevel();
 
-//initialize the game
-function initialize() {
-  generateWord(); // select random word
-  guessed = [];
+/*----- functions -----*/
 
+function initialize() {
+  generateWord();
+  guessed = [];
+  // Set default value for guesses array to _ X length of secret word
   for (let i = 0; i < word.length; i++) {
-    // Set default value for guesses array to _  _ _ _ X length of secret word
     guessed[i] = "_";
   }
   hangmanPic.setAttribute("src", "img/6.png");
@@ -145,13 +145,9 @@ function generateKeyboard() {
           guessed[i] = letter.textContent;
         }
       }
-      //   console.log(guessed);
-      //   console.log(word);
-      //   console.log(maxGuess);
-      //   console.log(word.length);
 
       guessedChar.textContent = guessed.join("  "); //  converst guessesd array to string and display correct guesses
-      checkWin(); // check if the player wins
+      checkWin();
     });
   });
 
@@ -167,8 +163,9 @@ function generateKeyboard() {
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
     showAnswer.classList.add("key-disable");
+
     for (let i = 0; i < word.length; i++) {
-      // filles the unanswerd charactors
+      // fills the unanswerd charactors
       if (guessed[i] === "_") {
         guessed[i] = word[i];
         guessedChar.textContent = guessed.join("  ");
@@ -178,7 +175,6 @@ function generateKeyboard() {
   });
 }
 
-// check if the player guessed all correct
 function checkWin() {
   if (word.toLowerCase() === guessed.join("").toLowerCase()) {
     //if true display win message and disable entire keyboard
@@ -203,7 +199,6 @@ function checkWin() {
   }
 }
 
-// generates random word
 function generateWord() {
   const categoryIndex = allWords.indexOf(
     allWords[Math.floor(Math.random() * allWords.length)]
@@ -235,13 +230,10 @@ function generateWord() {
     });
   }
   word = leveledWords[Math.floor(Math.random() * leveledWords.length)];
-
-  maxGuess = word.length; // set maximum guesses to word length
+  maxGuess = word.length;
 }
 
 function displayHint() {
-  // display hint first and last characters based on difficulty level
-
   message.textContent = `${maxGuess} guesses left`;
   if (difficulty === 0) {
     maxGuess--;
@@ -278,10 +270,10 @@ function difficultyLevel() {
 
     level.addEventListener("click", function (select) {
       difficulty = idx;
-      console.log(difficulty);
     });
   });
 }
+
 function renderHangman() {
   if (Math.round(word.length * 0.8) < maxGuess && maxGuess <= word.length) {
     hangmanPic.setAttribute("src", "img/6.png");
