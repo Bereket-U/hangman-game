@@ -6,6 +6,7 @@
   color: black;
   user-select: none;
   font-weight: normal;
+  text-transform: capitalize;
 }
 .header > h1 {
   font-weight: bold;
