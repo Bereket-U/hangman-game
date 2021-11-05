@@ -77,6 +77,10 @@ const hintBtn = document.getElementById("hint");
 const keyboard = document.querySelector(".keyboard");
 const guessedChar = document.getElementById("guessed"); // to display correct guesses
 const resetBtn = document.getElementById("reset");
+const hangman = document.getElementById("hangman-img");
+const hangmanPic = document.createElement("img");
+hangmanPic.setAttribute("src", "img/1.png");
+hangman.appendChild(hangmanPic);
 
 hintBtn.addEventListener("click", displayHint); // shows hint to player
 resetBtn.addEventListener("click", initialize); // resets the game
@@ -96,6 +100,7 @@ function initialize() {
     // Set default value for guesses array to _  _ _ _ X length of secret word
     guessed[i] = "_";
   }
+  hangmanPic.setAttribute("src", "img/1.png");
   guessedChar.innerHTML = guessed.join(" "); // Display default guessed Array to player
   wordLeangth = word.length + 1;
   message.textContent = "Guess To Win";
@@ -121,22 +126,28 @@ function generateKeyboard() {
 
     // add EventListener on every letter (keyboard elements)
     letter.addEventListener("click", function (move) {
-      maxGuess--;
       message.textContent = `${maxGuess} guesses left`;
-      // check if the secret word contains the target (guessed) letter
+      //  check is the secret work contains this letter
+      if (word.includes(letter.textContent.toLowerCase())) {
+        letter.classList.add("button-green"); //Add green button class
+        message.textContent = `${maxGuess} guesses left`;
+      } else {
+        letter.classList.add("key-disable");
+        maxGuess--;
+        message.textContent = `${maxGuess} guesses left`;
+      }
+
+      // loop over the word and replace the correct guesses
       for (let i = 0; i < word.length; i++) {
         if (word[i].toLowerCase() === letter.textContent.toLowerCase()) {
           // If true replace default _ value of the index to clicked letter
           guessed[i] = letter.textContent;
-          letter.classList.add("button-green"); //Add green button class
-        } else {
-          letter.classList.add("key-disable"); // disable onclick
         }
-        console.log(guessed);
-        console.log(word);
-        console.log(maxGuess);
-        console.log(word.length);
       }
+      console.log(guessed);
+      console.log(word);
+      console.log(maxGuess);
+      console.log(word.length);
 
       guessedChar.textContent = guessed.join("  "); //  converst guessesd array to string and display correct guesses
       checkWin(); // check if the player wins
@@ -238,7 +249,9 @@ function displayHint() {
     guessedChar.textContent = guessed.join("  ");
     hintBtn.classList.add("key-disable");
   } else if (difficulty === 1) {
+    maxGuess--;
     guessed[0] = word[0];
+    message.textContent = `${maxGuess} guesses left`;
     guessedChar.textContent = guessed.join("  ");
     hintBtn.classList.add("key-disable");
   } else if (difficulty === 2) {
