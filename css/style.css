@@ -20,10 +20,10 @@
   justify-content: center;
   background: #dddfd4;
 }
-.hungman-img {
+.hangman-img {
   display: flex;
 }
-.hungman-img > img {
+.hangman-img > img {
   width: 200px;
 }
 button {
