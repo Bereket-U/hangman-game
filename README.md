@@ -63,7 +63,7 @@ keyboard keys are clicked only once
 - [Winner Display](#winner-display)
 - [Game Over](#game-over-display)
 - [Cheat Button Display](#cheat-button-display)
-- [Phone Screen (iPhone X)](#phone-screen)
+- [Phone Screen (iPhone X)](#phone-screen-iphone-x)
 
 ### Home Page
 
@@ -81,7 +81,7 @@ keyboard keys are clicked only once
 
 ![](img/cheat.png)
 
-### Phone Screen (Iphone x)
+### Phone Screen Iphone x
 
 ![](img/iphone-updated.png)
 
