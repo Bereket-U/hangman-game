@@ -30,7 +30,7 @@ const letters = [
 // array of objects -> objects contain words with categories
 const allWords = [
   (continents = {
-    category: "Continant",
+    category: "Continent",
     words: ["asia", "africa", "antarctica", "europe", "australia", "new"],
   }),
   (car = {
@@ -90,6 +90,7 @@ function initialize() {
     // loop over all keyboad elements
     letter.classList.remove("button-green");
     letter.classList.remove("key-disable");
+    guessedChar.style.color = "black";
   });
 }
 
@@ -99,7 +100,7 @@ function generateKeyboard() {
     // const keyboard = document.querySelector(".keyboard");
     letter = document.createElement("button");
     letter.classList.add("button");
-    letter.textContent = letters[idx];
+    letter.innerHTML = letters[idx];
     keyboard.appendChild(letter);
 
     // add EventListener on every letter (keyboard elements)
@@ -125,6 +126,26 @@ function generateKeyboard() {
       checkWin(); // check if the player wins
     });
   });
+
+  const showAnswer = document.createElement("button");
+  showAnswer.classList.add("button");
+  showAnswer.innerHTML = "&#128526;";
+  keyboard.appendChild(showAnswer);
+  const dontCheat = "&#128540";
+
+  showAnswer.addEventListener("click", function (cool) {
+    message.innerHTML = `Try not to cheat next time ${dontCheat}`;
+    keyboard.classList.add("key-disable");
+    hintBtn.classList.add("key-disable");
+    for (let i = 0; i < word.length; i++) {
+      // filles the unanswerd charactors
+      if (guessed[i] === "_") {
+        guessed[i] = word[i];
+        guessedChar.textContent = guessed.join("  ");
+        guessedChar.style.color = "red";
+      }
+    }
+  });
 }
 
 // check if the player guessed all correct
@@ -134,14 +155,20 @@ function checkWin() {
     message.textContent = "Congrats! You are a life saver";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
-    // hint.textContent = "Click Replay";
   }
   if (maxGuess <= 0 && word !== guessed.join("")) {
     // if player is out of guesses show looser message and disable entire keyboard
     message.textContent = "Game Over! It's on you!";
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
-    // hint.textContent = "Click Replay";
+    for (let i = 0; i < word.length; i++) {
+      // Set default value for guesses array to _  _ _ _ X length of secret word
+      if (guessed[i] === "_") {
+        guessed[i] = word[i];
+        guessedChar.textContent = guessed.join("  ");
+        guessedChar.style.color = "red";
+      }
+    }
   }
 }
 
@@ -192,11 +219,14 @@ function displayHint() {
     guessed[0] = word[0];
     guessed[guessed.length - 1] = word[word.length - 1];
     guessedChar.textContent = guessed.join("  ");
+    hintBtn.classList.add("key-disable");
   } else if (difficulty === 1) {
     guessed[0] = word[0];
     guessedChar.textContent = guessed.join("  ");
+    hintBtn.classList.add("key-disable");
   } else if (difficulty === 2) {
     message.textContent = "Sorry! No hint this time";
+    hintBtn.classList.add("key-disable");
   } else {
   }
 }
