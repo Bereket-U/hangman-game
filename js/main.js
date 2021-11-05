@@ -31,7 +31,7 @@ const letters = [
 const allWords = [
   (continents = {
     category: "Continent",
-    words: ["Asia", "Africa", "Europe", "Antarctica", "Australia"],
+    words: ["asia", "Africa", "europe", "Antarctica", "Australia"],
   }),
   (car = {
     category: "car brand name",
@@ -125,7 +125,7 @@ function generateKeyboard() {
       message.textContent = `${maxGuess} guesses left`;
       // check if the secret word contains the target (guessed) letter
       for (let i = 0; i < word.length; i++) {
-        if (word[i] === letter.textContent) {
+        if (word[i].toLowerCase() === letter.textContent.toLowerCase()) {
           // If true replace default _ value of the index to clicked letter
           guessed[i] = letter.textContent;
           letter.classList.add("button-green"); //Add green button class
@@ -153,6 +153,7 @@ function generateKeyboard() {
     message.innerHTML = `Try not to cheat next time ${dontCheat}`;
     keyboard.classList.add("key-disable");
     hintBtn.classList.add("key-disable");
+    showAnswer.classList.add("key-disable");
     for (let i = 0; i < word.length; i++) {
       // filles the unanswerd charactors
       if (guessed[i] === "_") {
