@@ -60,7 +60,6 @@ keyboard keys are clicked only once
 - [Game Over](#game-over-display)
 - [Cheat Button Display](#cheat-button-display)
 - [Phone Screen (iPhone X)](#phone-screen)
--
 
 ### Home Page
 
