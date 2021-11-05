@@ -37,7 +37,7 @@ In addition to category, Hint is available for easy and normal difficulty levels
 
 ### Mobile friendly
 
-Lookes perfect in all mobile devices, used media query to style the keyboard layout
+Looks perfect in all mobile devices, used media query to style the keyboard layout
 
 ### Cheat Button
 
