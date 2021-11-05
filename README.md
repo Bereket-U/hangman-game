@@ -35,6 +35,10 @@ In addition to category, Hint is available for easy and normal difficulty levels
 
 - Hard - No hint - Category is available
 
+### Mobile friendly
+
+Looks perfect in all mobile devices, used media query to style the keyboard layout
+
 ### Cheat Button
 
 If it's too hard to guess, you can always see the secret word. Just to save the man!
@@ -79,7 +83,7 @@ keyboard keys are clicked only once
 
 ### Phone Screen (Iphone x)
 
-![](img/iphone.png)
+![](img/iphone-updated.png)
 
 ## **Getting Started**
 
