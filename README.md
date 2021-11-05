@@ -85,7 +85,7 @@ keyboard keys are clicked only once
 
 ## **Getting Started**
 
-Here is a [Link](https://) to start playing! Enjoy!
+Here is a [Link](https://bereket-u.github.io/hangman-game/) to start playing! Enjoy!
 
 ---
 
