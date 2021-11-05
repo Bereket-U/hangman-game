@@ -31,11 +31,27 @@ const letters = [
 const allWords = [
   (continents = {
     category: "Continent",
-    words: ["asia", "africa", "antarctica", "europe", "australia", "new"],
+    words: ["Asia", "Africa", "Europe", "Antarctica", "Australia"],
   }),
   (car = {
-    category: "Car Brand",
-    words: ["bmw", "ford", "tesla", "Lamborghini", "volkswagen"],
+    category: "car brand name",
+    words: [
+      "bmw",
+      "ford",
+      "tesla",
+      "Lamborghini",
+      "volkswagen",
+      "Chevrolet",
+      "Bugatti",
+      "Studebaker",
+      "Mercedes",
+      "GMC",
+      "Hyundai",
+      "Kia",
+      "Mazda",
+      "Fiat",
+      "Suzuki",
+    ],
   }),
 ];
 
@@ -190,14 +206,14 @@ function generateWord() {
     });
   } else if (difficulty === 1) {
     wordsArray.forEach(function (wordCheck) {
-      if (wordCheck.length > 3 && wordCheck.length < 7) {
+      if (wordCheck.length > 4 && wordCheck.length < 7) {
         leveledWords.push(wordCheck);
       }
       return;
     });
   } else if (difficulty === 0) {
     wordsArray.forEach(function (wordCheck) {
-      if (wordCheck.length <= 3) {
+      if (wordCheck.length <= 4) {
         leveledWords.push(wordCheck);
       }
       return;
